@@ -1,0 +1,15 @@
+---
+title: "Quantile-Regression-Slides"
+format: revealjs
+editor: visual
+---
+
+## Introduction
+
+Quantile regression is a way to model a line through a group of observations.
+
+## Methods
+
+## Analysis
+
+## Summary
