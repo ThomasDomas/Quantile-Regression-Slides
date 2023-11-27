@@ -1,0 +1,299 @@
+---
+title: "Quantile regression"
+author: "Jorge Galdos, Noureldin Kamel, and Thomas Domas"
+format:
+  revealjs:
+    theme: dark
+    footer: "Quantile Regression - Advanced Statistical Modeling Fall"
+---
+
+# Introduction
+
+## 1. Mathematical Properties
+
+-   Quantile regression (QR) model specification as compared to ordinary least squares
+-   Generalization to QR specification from median regression
+-   Illustration of QR behavior for different parameters
+
+## 2. Real-World Benefits
+
+-   Comparison of QR to OLS performance using home price data
+-   Measuring performance in extreme subsets of the data
+-   Testing OLS and QR model assumptions on data
+
+## 3. Significance Analysis and Model Interpretation
+
+-   Significance across different quantiles
+-   QR model interpretation
+
+# Methods
+
+## Ordinary Least Squares Specification
+
+-   The OLS model is specified by minimizing the sum of squared residuals: $$
+    argmin\sum_i^n \epsilon_i^2 = argmin\sum_i^n (y_i - \hat{y}_i)^2
+    $$
+-   The sum of squared residuals are theoretically minimized by the conditional mean of of $y$ given the predictors $X$
+
+## Median Regression {.smaller}
+
+::: columns
+::: {.column width="60%"}
+-   Median regression minimizes the sum of **absolute** residuals:
+
+    $$argmin \space E(|y-\hat{y}|)$$
+
+-   The expected value of the absolute sum of deviations from a given center c can be split into the following two terms \[2\]:
+
+    $$E|Y - c| = \int_{y\in R}|y-c|f(y)dy \\
+    =\int_{y < c} |y-c|f(y)dy + \int_{y>c}|y-c|f(y)dy  \\
+    =\int_{y<c}(c-y)f(y)dy + \int_{y>c}(y-c)f(y)dy \\$$
+:::
+
+::: {.column width="40%"}
+-   Differentiating $E|y-c|$ with respect to $c$ leads to the solution of the minimum:
+
+$$
+\frac{\partial}{\partial c}E|y-c|=0
+$$
+
+-   After differentiating the integrals on the left we will arrive at the conclusion that $c$ is the **median**.
+:::
+:::
+
+## Generalization to Quantile Regression {.smaller}
+
+-   To generalize the previous in order to estimate **conditional quantiles**, weights must be introduced:
+
+$$
+\frac{\partial}{\partial c} E\left[\rho_\theta(Y-c)\right]=\frac{\partial}{\partial c}\left\{(1-\theta) \int_{-\infty}^c|y-c| f(y) d y+\theta \int_c^{+\infty}|y-c| f(y) d y\right\}
+$$
+
+-   The solution to the minimization problem is the $\theta$th quantile, $q_\theta$:
+
+$$
+F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarrow c=q_\theta
+$$
+
+# Data
+
+using @gridExtra and @ggplot2
+
+```{r, echo=FALSE, include=FALSE}
+library(quantreg)
+library(Metrics)
+require(gridExtra)
+library(ggplot2)
+
+df <- read.csv("TrainData.csv") |>
+  na.omit()
+```
+
+## 1. data used
+We modeled Sale price of houses vs their House area, number of rooms above ground, lot area, foundation type and lotshape.
+
+
+## 2. Visualizations
+```{r 'Visualizing data', warning=FALSE}
+suppressWarnings({
+
+p1 <- df |> ggplot(aes(x = GrLivArea)) + geom_histogram(binwidth = 100) + theme_bw() + theme(axis.text.y = element_blank(), axis.text.x = element_text(angle = 90), axis.ticks.y = element_blank()) + ylab(NULL) + xlab("House Area (sq. ft.)") + scale_x_continuous(position = "top")
+
+# p2 <- df |> ggplot(aes(x = LotArea)) + geom_histogram(binwidth = 5) + theme_bw() + theme(axis.text.y = element_blank(), axis.text.x = element_text(angle = 90), axis.ticks.y = element_blank()) + ylab(NULL) + xlab("Year Built") + scale_x_continuous(position = "top")
+
+p3 <- df |> ggplot(aes(x = Foundation)) + geom_histogram(stat="count") + theme_bw() + theme(axis.text.y = element_blank(), axis.text.x = element_text(angle = 90), axis.ticks.y = element_blank()) + ylab(NULL) + xlab("Foundation type") + scale_x_discrete(position = "top")
+
+p4 <- ggplot() + theme_minimal()
+
+p5 <- df |> ggplot(aes(x = GrLivArea, y = SalePrice)) + geom_point() + theme_bw() + theme(axis.text = element_blank(), axis.ticks = element_blank()) + ylab(NULL) + xlab(NULL)
+
+# p6 <- df |> ggplot(aes(x = LotArea, y = SalePrice)) + geom_point() + theme_bw() + theme(axis.text = element_blank(), axis.ticks = element_blank()) + ylab(NULL) + xlab(NULL)
+
+p7 <- df |> ggplot(aes(x = Foundation, y = SalePrice)) + geom_point() + theme_bw() + theme(axis.text = element_blank(), axis.ticks = element_blank()) + ylab(NULL) + xlab(NULL)
+
+p8 <- df |> ggplot(aes(x = SalePrice)) + geom_histogram(binwidth = 10000) + theme_bw() + ylab(NULL) + xlab("Sale Price ($)") + coord_flip() + scale_x_continuous(position = "top") + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+# grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, nrow = 2)
+grid.arrange(p1, p3, p4, p5, p7, p8, nrow = 2)
+
+})
+```
+
+
+# Analysis
+
+## 1. Analysis
+In this section we compared the results of OLS model with the results of quantile regression models
+
+## 2. Visualizing models
+```{r, 'Visualizing housing cont', warning=FALSE}
+df |> ggplot(aes(y = SalePrice, x = GrLivArea)) +
+  geom_point(size = 0.9) +
+  stat_smooth(method = lm, color = "black") +
+  geom_text(aes(x = 4150, y = 500000, label = "OLS"), color="black") + 
+  geom_quantile(quantiles=0.25, color="red") + 
+  geom_text(aes(x = 4000, y = 270000, label = "25th quantile"), color="red") + 
+  geom_quantile(quantiles=0.5, color="blue") + 
+  geom_text(aes(x = 4150, y = 400000, label = "50th"), color="blue") + 
+  geom_quantile(quantiles=0.75, color="green") + 
+  geom_text(aes(x = 4000, y = 600000, label = "75th quantile"), color="green") + 
+  xlab("Sale price ($)") +
+  ylab("Above ground area (Square feet)") +
+  theme_bw()
+```
+
+```{r 'OLS model creation', warning=FALSE, include=FALSE}
+qr50 = rq(data=df, SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation), tau=0.5)
+qr50_summary = summary(qr50)
+
+ols = lm(data=df, SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation))
+ols_summary = summary(ols)
+ols_summary
+
+taus <- seq(from=0, to=1, by=.01)
+qrs = rq(data=df, SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation), tau=taus)
+```
+
+```{r 'MAE for different quantiles', warning=FALSE, include=FALSE}
+fullDataLength = length(df$SalePrice)
+fullDataLength
+count10per = fullDataLength / 10
+count10per
+sorted_df_desc <- df[order(-df$SalePrice),]
+Q90SalePrice <- sorted_df_desc[0:count10per, ] # data greater than 90% of data
+length(Q90SalePrice$SalePrice)
+
+qr90_m = rq(data=df, SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation), tau=0.90)
+
+ols_q90_predictions <- predict(ols, newdata=Q90SalePrice)
+ols_q90_mae <- mae(ols_q90_predictions, Q90SalePrice$SalePrice)
+ols_q90_mae
+
+qr90_q90_predictions <- predict(qr90_m, newdata=Q90SalePrice)
+qr90_q90_mae <- mae(qr90_q90_predictions, Q90SalePrice$SalePrice)
+qr90_q90_mae
+
+###########
+sorted_df_asc <- df[order(df$SalePrice),]
+length(sorted_df_asc$SalePrice)
+Q10SalePrice <- sorted_df_asc[0:count10per, ] # data lower than 90% of data
+length(Q10SalePrice$SalePrice)
+
+qr10_m = rq(data=df, SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation), tau=0.10)
+
+ols_q10_predictions <- predict(ols, newdata=Q10SalePrice)
+ols_q10_mae <- mae(ols_q10_predictions, Q10SalePrice$SalePrice)
+ols_q10_mae
+
+qr10_q10_predictions <- predict(qr10_m, newdata=Q10SalePrice)
+qr10_q10_mae <- mae(qr10_q10_predictions, Q10SalePrice$SalePrice)
+qr10_q10_mae
+
+```
+
+```{r, warnings=FALSE, include=FALSE}
+getQrModel <- function(data1, tau1, equation) {
+  rq(data=data1, equation, tau=tau1)
+}
+
+getPvalue <- function(model1, model2) {
+  anova(model1, model2)["table"]$table["pvalue"]
+}
+
+eq_full <- SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape) + as.factor(Foundation)
+eq_no_foundation <- SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(LotShape)
+eq_no_lotshape <- SalePrice ~ GrLivArea + LotArea + TotRmsAbvGrd + as.factor(Foundation)
+
+
+qr15 <- getQrModel(df, 0.15, eq_full)
+qr15_no_f <- getQrModel(df, 0.15, eq_no_foundation)
+qr15_no_lot <- getQrModel(df, 0.15, eq_no_lotshape)
+
+foundation_15_p <- getPvalue(qr15, qr15_no_f)
+foundation_15_p
+lotshape_15_p <- getPvalue(qr15, qr15_no_lot)
+lotshape_15_p
+
+
+qr25 <- getQrModel(df, 0.25, eq_full)
+qr25_no_f <- getQrModel(df, 0.25, eq_no_foundation)
+qr25_no_lot <- getQrModel(df, 0.25, eq_no_lotshape)
+
+foundation_25_p <- getPvalue(qr25, qr25_no_f)
+foundation_25_p
+lotshape_25_p <- getPvalue(qr25, qr25_no_lot)
+lotshape_25_p
+
+
+qr50 <- getQrModel(df, 0.50, eq_full)
+qr50_no_f <- getQrModel(df, 0.50, eq_no_foundation)
+qr50_no_lot <- getQrModel(df, 0.50, eq_no_lotshape)
+
+foundation_50_p <- getPvalue(qr50, qr50_no_f)
+foundation_50_p
+lotshape_50_p <- getPvalue(qr50, qr50_no_lot)
+lotshape_50_p
+
+
+qr80 <- getQrModel(df, 0.80, eq_full)
+qr80_no_f <- getQrModel(df, 0.80, eq_no_foundation)
+qr80_no_lot <- getQrModel(df, 0.80, eq_no_lotshape)
+
+foundation_80_p <- getPvalue(qr80, qr80_no_f)
+foundation_80_p
+lotshape_80_p <- getPvalue(qr80, qr80_no_lot)
+lotshape_80_p
+
+
+qr95 <- getQrModel(df, 0.95, eq_full)
+qr95_no_f <- getQrModel(df, 0.95, eq_no_foundation)
+qr95_no_lot <- getQrModel(df, 0.95, eq_no_lotshape)
+
+foundation_95_p <- getPvalue(qr95, qr95_no_f)
+foundation_95_p
+lotshape_95_p <- getPvalue(qr95, qr95_no_lot)
+lotshape_95_p
+## q75, q10 and q90 gives singularity errors
+```
+
+## 3.1 QR significance
+
+Alpha=0.01
+
+::: {.r-fit-text}
+|Quantile   |foundation p-value   | significant?    | lot shape p-value   | significant?    |
+|----------:|--------------------:|----------------:|--------------------:|----------------:|
+|0.15       |`r foundation_15_p`  |`r foundation_15_p<0.01`|`r lotshape_15_p`  |`r lotshape_15_p<0.01`|
+|0.25       |`r foundation_25_p`  |`r foundation_25_p<0.01`|`r lotshape_25_p`  |`r lotshape_25_p<0.01`|
+|0.50       |`r foundation_50_p`  |`r foundation_50_p<0.01`|`r lotshape_50_p`  |`r lotshape_50_p<0.01`|
+|0.80       |`r foundation_80_p`  |`r foundation_80_p<0.01`|`r lotshape_80_p`  |`r lotshape_80_p<0.01`|
+|0.95       |`r foundation_95_p`  |`r foundation_95_p<0.01`|`r lotshape_95_p`  |`r lotshape_95_p<0.01`|
+:::
+
+```{r, Warning=FALSE, include=FALSE}
+qrs_summary <- summary(qrs, se = "iid")
+#tau: 0.1
+q10_sig <- qrs_summary[11][[1]]$coefficients[,4][0:4]
+#tau: 0.25
+q25_sig <- qrs_summary[26][[1]]$coefficients[,4][0:4]
+#tau: 0.5
+q50_sig <- qrs_summary[51][[1]]$coefficients[,4][0:4]
+#tau: 0.75
+q75_sig <- qrs_summary[76][[1]]$coefficients[,4][0:4]
+#tau: 0.9
+q90_sig <- qrs_summary[91][[1]]$coefficients[,4][0:4]
+```
+
+## 3.2 QR significance
+
+::: {.r-fit-text}
+|Quantile   |GrLivArea p-value| significant?    | TotRmsAbvGrd p-value| significant?  | LotArea p-value| significant?   |
+|----------:|----------------:|----------------:|--------------------:|--------------:|---------------:|------------------:|
+|0.15       |`r q10_sig[2]`  |`r q10_sig[2]<0.01`|`r q10_sig[4]`  |`r q10_sig[4]<0.01`|`r q10_sig[3]`  |`r q10_sig[3]<0.01`|
+|0.25       |`r q25_sig[2]`  |`r q25_sig[2]<0.01`|`r q25_sig[4]`  |`r q25_sig[4]<0.01`|`r q25_sig[3]`  |`r q25_sig[3]<0.01`|
+|0.50       |`r q50_sig[2]`  |`r q50_sig[2]<0.01`|`r q50_sig[4]`  |`r q50_sig[4]<0.01`|`r q50_sig[3]`  |`r q50_sig[3]<0.01`|
+|0.75       |`r q75_sig[2]`  |`r q75_sig[2]<0.01`|`r q75_sig[4]`  |`r q75_sig[4]<0.01`|`r q75_sig[3]`  |`r q75_sig[3]<0.01`|
+|0.90       |`r q90_sig[2]`  |`r q90_sig[2]<0.01`|`r q90_sig[4]`  |`r q90_sig[4]<0.01`|`r q90_sig[3]`  |`r q90_sig[3]<0.01`|
+:::
+
+# Summary

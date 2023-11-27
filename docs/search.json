@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "presentation.html#mathematical-properties",
+    "href": "presentation.html#mathematical-properties",
+    "title": "Quantile regression",
+    "section": "1. Mathematical Properties",
+    "text": "1. Mathematical Properties\n\nQuantile regression (QR) model specification as compared to ordinary least squares\nGeneralization to QR specification from median regression\nIllustration of QR behavior for different parameters"
+  },
+  {
+    "objectID": "presentation.html#real-world-benefits",
+    "href": "presentation.html#real-world-benefits",
+    "title": "Quantile regression",
+    "section": "2. Real-World Benefits",
+    "text": "2. Real-World Benefits\n\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data\nTesting OLS and QR model assumptions on data"
+  },
+  {
+    "objectID": "presentation.html#significance-analysis-and-model-interpretation",
+    "href": "presentation.html#significance-analysis-and-model-interpretation",
+    "title": "Quantile regression",
+    "section": "3. Significance Analysis and Model Interpretation",
+    "text": "3. Significance Analysis and Model Interpretation\n\nSignificance across different quantiles\nQR model interpretation"
+  },
+  {
+    "objectID": "presentation.html#ordinary-least-squares-specification",
+    "href": "presentation.html#ordinary-least-squares-specification",
+    "title": "Quantile regression",
+    "section": "Ordinary Least Squares Specification",
+    "text": "Ordinary Least Squares Specification\n\nThe OLS model is specified by minimizing the sum of squared residuals: \\[\nargmin\\sum_i^n \\epsilon_i^2 = argmin\\sum_i^n (y_i - \\hat{y}_i)^2\n\\]\nThe sum of squared residuals are theoretically minimized by the conditional mean of of \\(y\\) given the predictors \\(X\\)"
+  },
+  {
+    "objectID": "presentation.html#median-regression",
+    "href": "presentation.html#median-regression",
+    "title": "Quantile regression",
+    "section": "Median Regression",
+    "text": "Median Regression\n\n\n\nMedian regression minimizes the sum of absolute residuals:\n\\[argmin \\space E(|y-\\hat{y}|)\\]\nThe expected value of the absolute sum of deviations from a given center c can be split into the following two terms [2]:\n\\[E|Y - c| = \\int_{y\\in R}|y-c|f(y)dy \\\\\n=\\int_{y &lt; c} |y-c|f(y)dy + \\int_{y&gt;c}|y-c|f(y)dy  \\\\\n=\\int_{y&lt;c}(c-y)f(y)dy + \\int_{y&gt;c}(y-c)f(y)dy \\\\\\]\n\n\n\nDifferentiating \\(E|y-c|\\) with respect to \\(c\\) leads to the solution of the minimum:\n\n\\[\n\\frac{\\partial}{\\partial c}E|y-c|=0\n\\]\n\nAfter differentiating the integrals on the left we will arrive at the conclusion that \\(c\\) is the median."
+  },
+  {
+    "objectID": "presentation.html#generalization-to-quantile-regression",
+    "href": "presentation.html#generalization-to-quantile-regression",
+    "title": "Quantile regression",
+    "section": "Generalization to Quantile Regression",
+    "text": "Generalization to Quantile Regression\n\nTo generalize the previous in order to estimate conditional quantiles, weights must be introduced:\n\n\\[\n\\frac{\\partial}{\\partial c} E\\left[\\rho_\\theta(Y-c)\\right]=\\frac{\\partial}{\\partial c}\\left\\{(1-\\theta) \\int_{-\\infty}^c|y-c| f(y) d y+\\theta \\int_c^{+\\infty}|y-c| f(y) d y\\right\\}\n\\]\n\nThe solution to the minimization problem is the \\(\\theta\\)th quantile, \\(q_\\theta\\):\n\n\\[\nF(c)-\\theta F(c)-\\theta+\\theta F(c)=0 \\Longrightarrow F(c)=\\theta \\Longrightarrow c=q_\\theta\n\\]"
+  },
+  {
+    "objectID": "presentation.html#data-used",
+    "href": "presentation.html#data-used",
+    "title": "Quantile regression",
+    "section": "1. data used",
+    "text": "1. data used\nWe modeled Sale price of houses vs their House area, number of rooms above ground, lot area, foundation type and lotshape."
+  },
+  {
+    "objectID": "presentation.html#visualizations",
+    "href": "presentation.html#visualizations",
+    "title": "Quantile regression",
+    "section": "2. Visualizations",
+    "text": "2. Visualizations"
+  },
+  {
+    "objectID": "presentation.html#analysis-1",
+    "href": "presentation.html#analysis-1",
+    "title": "Quantile regression",
+    "section": "1. Analysis",
+    "text": "1. Analysis\nIn this section we compared the results of OLS model with the results of quantile regression models"
+  },
+  {
+    "objectID": "presentation.html#visualizing-models",
+    "href": "presentation.html#visualizing-models",
+    "title": "Quantile regression",
+    "section": "2. Visualizing models",
+    "text": "2. Visualizing models"
+  },
+  {
+    "objectID": "presentation.html#qr-significance",
+    "href": "presentation.html#qr-significance",
+    "title": "Quantile regression",
+    "section": "3.1 QR significance",
+    "text": "3.1 QR significance\nAlpha=0.01\n\n\n\n\n\n\n\n\n\n\n\nQuantile\nfoundation p-value\nsignificant?\nlot shape p-value\nsignificant?\n\n\n\n\n0.15\n0\nTRUE\n5.7287508^{-14}\nTRUE\n\n\n0.25\n0\nTRUE\n0\nTRUE\n\n\n0.50\n0\nTRUE\n2.0759255^{-7}\nTRUE\n\n\n0.80\n0\nTRUE\n0.0036757\nTRUE\n\n\n0.95\n1.0735857^{-13}\nTRUE\n0.2224687\nFALSE"
+  },
+  {
+    "objectID": "presentation.html#qr-significance-1",
+    "href": "presentation.html#qr-significance-1",
+    "title": "Quantile regression",
+    "section": "3.2 QR significance",
+    "text": "3.2 QR significance\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuantile\nGrLivArea p-value\nsignificant?\nTotRmsAbvGrd p-value\nsignificant?\nLotArea p-value\nsignificant?\n\n\n\n\n0.15\n0\nTRUE\n0.0496147\nFALSE\n0.0094621\nTRUE\n\n\n0.25\n0\nTRUE\n8.3392633^{-8}\nTRUE\n8.8418162^{-13}\nTRUE\n\n\n0.50\n0\nTRUE\n7.382277^{-10}\nTRUE\n0\nTRUE\n\n\n0.75\n0\nTRUE\n4.8602452^{-4}\nTRUE\n0\nTRUE\n\n\n0.90\n0\nTRUE\n1.8520468^{-4}\nTRUE\n0\nTRUE"
+  }
+]
