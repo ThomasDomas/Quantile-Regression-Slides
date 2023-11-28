@@ -8,7 +8,7 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.433">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Jorge Galdos, Noureldin Kamel, and Thomas Domas">
   <title>Quantile regression</title>
@@ -342,7 +342,7 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 
 </section>
 <section id="mathematical-properties" class="slide level2">
-<h2>1. Mathematical Properties</h2>
+<h2>Mathematical Properties</h2>
 <ul>
 <li>Quantile regression (QR) model specification as compared to ordinary least squares</li>
 <li>Generalization to QR specification from median regression</li>
@@ -350,7 +350,7 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 </ul>
 </section>
 <section id="real-world-benefits" class="slide level2">
-<h2>2. Real-World Benefits</h2>
+<h2>Real-World Benefits</h2>
 <ul>
 <li>Comparison of QR to OLS performance using home price data</li>
 <li>Measuring performance in extreme subsets of the data</li>
@@ -358,7 +358,7 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 </ul>
 </section>
 <section id="significance-analysis-and-model-interpretation" class="slide level2">
-<h2>3. Significance Analysis and Model Interpretation</h2>
+<h2>Significance Analysis and Model Interpretation</h2>
 <ul>
 <li>Significance across different quantiles</li>
 <li>QR model interpretation</li>
@@ -368,6 +368,11 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <section id="methods" class="title-slide slide level1 center">
 <h1>Methods</h1>
 
+</section>
+<section id="ground-work" class="slide level2">
+<h2>Ground Work</h2>
+<p>A quantile is defined as the follow:<br>
+<span class="math inline">\(Q(p)=F^{-1}(p)=\inf \{x: F(x) \geq p\}, \quad 0&lt;p&lt;1\)</span>,</p>
 </section>
 <section id="ordinary-least-squares-specification" class="slide level2">
 <h2>Ordinary Least Squares Specification</h2>
@@ -482,7 +487,17 @@ F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarro
 </tr>
 </tbody>
 </table>
-</section></section>
+</section>
+<section id="why-does-this-matter" class="slide level2">
+<h2>Why Does This Matter?</h2>
+<ul>
+<li>Allows us to see how a model changes throughout the entire distribution.</li>
+</ul>
+</section>
+<section id="modeling-birth-weights" class="slide level2">
+<h2>Modeling Birth Weights</h2>
+
+<img data-src="koenker_1978.png" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="data" class="title-slide slide level1 center">
 <h1>Data</h1>

@@ -3,22 +3,22 @@
     "objectID": "presentation.html#mathematical-properties",
     "href": "presentation.html#mathematical-properties",
     "title": "Quantile regression",
-    "section": "1. Mathematical Properties",
-    "text": "1. Mathematical Properties\n\nQuantile regression (QR) model specification as compared to ordinary least squares\nGeneralization to QR specification from median regression\nIllustration of QR behavior for different parameters"
+    "section": "Mathematical Properties",
+    "text": "Mathematical Properties\n\nQuantile regression (QR) model specification as compared to ordinary least squares\nGeneralization to QR specification from median regression\nIllustration of QR behavior for different parameters"
   },
   {
     "objectID": "presentation.html#real-world-benefits",
     "href": "presentation.html#real-world-benefits",
     "title": "Quantile regression",
-    "section": "2. Real-World Benefits",
-    "text": "2. Real-World Benefits\n\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data\nTesting OLS and QR model assumptions on data"
+    "section": "Real-World Benefits",
+    "text": "Real-World Benefits\n\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data\nTesting OLS and QR model assumptions on data"
   },
   {
     "objectID": "presentation.html#significance-analysis-and-model-interpretation",
     "href": "presentation.html#significance-analysis-and-model-interpretation",
     "title": "Quantile regression",
-    "section": "3. Significance Analysis and Model Interpretation",
-    "text": "3. Significance Analysis and Model Interpretation\n\nSignificance across different quantiles\nQR model interpretation"
+    "section": "Significance Analysis and Model Interpretation",
+    "text": "Significance Analysis and Model Interpretation\n\nSignificance across different quantiles\nQR model interpretation"
   },
   {
     "objectID": "presentation.html#ordinary-least-squares-specification",
@@ -103,5 +103,26 @@
     "title": "Quantile regression",
     "section": "90th Quantile",
     "text": "90th Quantile\n\n\n\n\nNegative Residual\nOn Line\nPositive Residual\n\n\n\n\n-44\n2\n4"
+  },
+  {
+    "objectID": "presentation.html#ground-work",
+    "href": "presentation.html#ground-work",
+    "title": "Quantile regression",
+    "section": "Ground Work",
+    "text": "Ground Work\nA quantile is defined as the follow:\n\\(Q(p)=F^{-1}(p)=\\inf \\{x: F(x) \\geq p\\}, \\quad 0&lt;p&lt;1\\),"
+  },
+  {
+    "objectID": "presentation.html#why-does-this-matter",
+    "href": "presentation.html#why-does-this-matter",
+    "title": "Quantile regression",
+    "section": "Why Does This Matter?",
+    "text": "Why Does This Matter?\n\nAllows us to see how a model changes throughout the entire distribution."
+  },
+  {
+    "objectID": "presentation.html#modeling-birth-weights",
+    "href": "presentation.html#modeling-birth-weights",
+    "title": "Quantile regression",
+    "section": "Modeling Birth Weights",
+    "text": "Modeling Birth Weights"
   }
 ]

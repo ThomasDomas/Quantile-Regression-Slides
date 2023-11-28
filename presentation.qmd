@@ -9,24 +9,28 @@ format:
 
 # Introduction
 
-## 1. Mathematical Properties
+## Mathematical Properties
 
 -   Quantile regression (QR) model specification as compared to ordinary least squares
 -   Generalization to QR specification from median regression
 -   Illustration of QR behavior for different parameters
 
-## 2. Real-World Benefits
+## Real-World Benefits
 
 -   Comparison of QR to OLS performance using home price data
 -   Measuring performance in extreme subsets of the data
 -   Testing OLS and QR model assumptions on data
 
-## 3. Significance Analysis and Model Interpretation
+## Significance Analysis and Model Interpretation
 
 -   Significance across different quantiles
 -   QR model interpretation
 
 # Methods
+
+## Ground Work
+A quantile is defined as the follow:  
+$Q(p)=F^{-1}(p)=\inf \{x: F(x) \geq p\}, \quad 0<p<1$,
 
 ## Ordinary Least Squares Specification
 
@@ -135,6 +139,12 @@ qplot(x=cars$speed, y=cars$dist)+geom_line(y=yhat)+
 | Negative Residual       | On Line           | Positive Residual |
 | ------------- |:-------------:| -----:|
 |    -44  | 2 | 4 |
+
+## Why Does This Matter?
+- Allows us to see how a model changes throughout the entire distribution.
+
+## Modeling Birth Weights
+![](koenker_1978.png){width=500, fig-align="center"}
 
 # Data
 
