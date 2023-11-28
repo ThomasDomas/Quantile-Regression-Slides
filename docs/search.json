@@ -82,5 +82,26 @@
     "title": "Quantile regression",
     "section": "3.2 QR significance",
     "text": "3.2 QR significance\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuantile\nGrLivArea p-value\nsignificant?\nTotRmsAbvGrd p-value\nsignificant?\nLotArea p-value\nsignificant?\n\n\n\n\n0.15\n0\nTRUE\n0.0496147\nFALSE\n0.0094621\nTRUE\n\n\n0.25\n0\nTRUE\n8.3392633^{-8}\nTRUE\n8.8418162^{-13}\nTRUE\n\n\n0.50\n0\nTRUE\n7.382277^{-10}\nTRUE\n0\nTRUE\n\n\n0.75\n0\nTRUE\n4.8602452^{-4}\nTRUE\n0\nTRUE\n\n\n0.90\n0\nTRUE\n1.8520468^{-4}\nTRUE\n0\nTRUE"
+  },
+  {
+    "objectID": "presentation.html#th-conditional-quantile",
+    "href": "presentation.html#th-conditional-quantile",
+    "title": "Quantile regression",
+    "section": "50th Conditional Quantile",
+    "text": "50th Conditional Quantile\n\n\n\n\nNegative Residual\nOn Line\nPositive Residual\n\n\n\n\n24\n3\n23"
+  },
+  {
+    "objectID": "presentation.html#th-quantile",
+    "href": "presentation.html#th-quantile",
+    "title": "Quantile regression",
+    "section": "10th Quantile",
+    "text": "10th Quantile\n\n\n\n\nNegative Residual\nOn Line\nPositive Residual\n\n\n\n\n5\n1\n44"
+  },
+  {
+    "objectID": "presentation.html#th-quantile-1",
+    "href": "presentation.html#th-quantile-1",
+    "title": "Quantile regression",
+    "section": "90th Quantile",
+    "text": "90th Quantile\n\n\n\n\nNegative Residual\nOn Line\nPositive Residual\n\n\n\n\n-44\n2\n4"
   }
 ]

@@ -75,6 +75,67 @@ $$
 F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarrow c=q_\theta
 $$
 
+# Example Visualizations
+
+## 50th Conditional Quantile
+```{r}
+data(cars)
+library(quantreg)
+library(ggplot2)
+rq50 <- rq(dist ~ speed, data=cars, tau=0.5)
+yhat<-rq50$fitted.values
+color = sign(rq50$residuals)
+qplot(x=cars$speed, y=cars$dist)+geom_line(y=yhat)+
+       geom_segment(aes(x=cars$speed, xend=cars$speed, y=cars$dist, yend=yhat, group=as.factor(color), color=as.factor(color)))+
+       labs(title="Residuals of 50th Conditional Quantile", color=color) +
+       xlab("Speed") +
+       ylab("Distance") +
+       scale_color_manual(labels = c("Negative Residual", "On Line", "Positive Residual"), values = c("blue", "green", "red"))
+```
+| Negative Residual       | On Line           | Positive Residual |
+| ------------- |:-------------:| -----:|
+| 24     | 3 | 23 |
+
+## 10th Quantile
+```{r}
+data(cars)
+library(quantreg)
+library(ggplot2)
+rq50 <- rq(dist ~ speed, data=cars, tau=0.1)
+yhat<-rq50$fitted.values
+color = sign(rq50$residuals)
+qplot(x=cars$speed, y=cars$dist)+geom_line(y=yhat)+
+       geom_segment(aes(x=cars$speed, xend=cars$speed, y=cars$dist, yend=yhat, group=as.factor(color), color=as.factor(color)))+
+       labs(title="Residuals of 10th Conditional Quantile", color=color) +
+       xlab("Speed") +
+       ylab("Distance") +
+       scale_color_manual(labels = c("Negative Residual", "On Line", "Positive Residual"), values = c("blue", "green", "red")) +
+  theme(legend.title = element_blank())
+```
+| Negative Residual       | On Line           | Positive Residual |
+| ------------- |:-------------:| -----:|
+|    5  | 1 | 44 |
+
+## 90th Quantile
+```{r}
+data(cars)
+library(quantreg)
+library(ggplot2)
+rq50 <- rq(dist ~ speed, data=cars, tau=0.9)
+yhat<-rq50$fitted.values
+color = sign(rq50$residuals)
+qplot(x=cars$speed, y=cars$dist)+geom_line(y=yhat)+
+       geom_segment(aes(x=cars$speed, xend=cars$speed, y=cars$dist, yend=yhat, group=as.factor(color), color=as.factor(color)))+
+       labs(title="Residuals of 90th Conditional Quantile", color=color) +
+       xlab("Speed") +
+       ylab("Distance") +
+       scale_color_manual(labels = c("Negative Residual", "On Line", "Positive Residual"), values = c("blue", "green", "red")) +
+  theme(legend.title = element_blank())
+```
+| Negative Residual       | On Line           | Positive Residual |
+| ------------- |:-------------:| -----:|
+|    -44  | 2 | 4 |
+
 # Data
 
 using @gridExtra and @ggplot2
