@@ -4,14 +4,14 @@
     "href": "presentation.html#mathematical-properties",
     "title": "Quantile regression",
     "section": "Mathematical Properties",
-    "text": "Mathematical Properties\n\nQuantile regression (QR) model specification as compared to ordinary least squares\nGeneralization to QR specification from median regression\nIllustration of QR behavior for different parameters"
+    "text": "Mathematical Properties\n\nQuantile regression (QR) loss function as compared to ordinary least squares\nHow quantile regression relates to the median\nGeneralization of how quantile regression can be generalized to\nIllustration of QR behavior for different parameters"
   },
   {
     "objectID": "presentation.html#real-world-benefits",
     "href": "presentation.html#real-world-benefits",
     "title": "Quantile regression",
     "section": "Real-World Benefits",
-    "text": "Real-World Benefits\n\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data\nTesting OLS and QR model assumptions on data"
+    "text": "Real-World Benefits\n\nTesting OLS and QR model assumptions on data\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data"
   },
   {
     "objectID": "presentation.html#significance-analysis-and-model-interpretation",
@@ -25,7 +25,7 @@
     "href": "presentation.html#ordinary-least-squares-specification",
     "title": "Quantile regression",
     "section": "Ordinary Least Squares Specification",
-    "text": "Ordinary Least Squares Specification\n\nThe OLS model is specified by minimizing the sum of squared residuals: \\[\nargmin\\sum_i^n \\epsilon_i^2 = argmin\\sum_i^n (y_i - \\hat{y}_i)^2\n\\]\nThe sum of squared residuals are theoretically minimized by the conditional mean of of \\(y\\) given the predictors \\(X\\)"
+    "text": "Ordinary Least Squares Specification\n\nThe OLS model is specified by minimizing the sum of squared residuals: \\[\n\\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n \\epsilon_i^2 = \\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n (y_i - \\hat{y}_i)^2=\\beta_0 +\\beta_1X...\\beta_bX_n\n\\]\nThe sum of squared residuals is minimized by the mean of of \\(\\hat{Y}\\) given the predictors \\(X\\)"
   },
   {
     "objectID": "presentation.html#median-regression",
@@ -124,5 +124,19 @@
     "title": "Quantile regression",
     "section": "Modeling Birth Weights",
     "text": "Modeling Birth Weights"
+  },
+  {
+    "objectID": "presentation.html#nomenclature",
+    "href": "presentation.html#nomenclature",
+    "title": "Quantile regression",
+    "section": "Nomenclature",
+    "text": "Nomenclature\n\nIn most literature, the words quantile and percentile are used interchangeable\nTechnically quantiles refer to the number of equal partitions of the distribution\nQuantile \\(\\neq\\) Quartile"
+  },
+  {
+    "objectID": "presentation.html#formal-definition",
+    "href": "presentation.html#formal-definition",
+    "title": "Quantile regression",
+    "section": "Formal Definition",
+    "text": "Formal Definition\nA quantile is defined as the follow:\n\\(Q(p)=F^{-1}(p)=\\inf \\{x: F(x) \\geq p\\}, \\quad 0&lt;p&lt;1\\),"
   }
 ]

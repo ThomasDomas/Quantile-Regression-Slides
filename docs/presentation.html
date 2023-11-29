@@ -344,17 +344,18 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <section id="mathematical-properties" class="slide level2">
 <h2>Mathematical Properties</h2>
 <ul>
-<li>Quantile regression (QR) model specification as compared to ordinary least squares</li>
-<li>Generalization to QR specification from median regression</li>
+<li>Quantile regression (QR) loss function as compared to ordinary least squares</li>
+<li>How quantile regression relates to the median</li>
+<li>Generalization of how quantile regression can be generalized to</li>
 <li>Illustration of QR behavior for different parameters</li>
 </ul>
 </section>
 <section id="real-world-benefits" class="slide level2">
 <h2>Real-World Benefits</h2>
 <ul>
+<li>Testing OLS and QR model assumptions on data</li>
 <li>Comparison of QR to OLS performance using home price data</li>
 <li>Measuring performance in extreme subsets of the data</li>
-<li>Testing OLS and QR model assumptions on data</li>
 </ul>
 </section>
 <section id="significance-analysis-and-model-interpretation" class="slide level2">
@@ -369,8 +370,17 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <h1>Methods</h1>
 
 </section>
-<section id="ground-work" class="slide level2">
-<h2>Ground Work</h2>
+<section id="nomenclature" class="slide level2">
+<h2>Nomenclature</h2>
+<ul>
+<li>In most literature, the words quantile and percentile are used interchangeable</li>
+<li>Technically quantiles refer to the number of equal partitions of the distribution</li>
+<li>Quantile <span class="math inline">\(\neq\)</span> Quartile</li>
+</ul>
+
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="formal-definition" class="slide level2">
+<h2>Formal Definition</h2>
 <p>A quantile is defined as the follow:<br>
 <span class="math inline">\(Q(p)=F^{-1}(p)=\inf \{x: F(x) \geq p\}, \quad 0&lt;p&lt;1\)</span>,</p>
 </section>
@@ -378,9 +388,9 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <h2>Ordinary Least Squares Specification</h2>
 <ul>
 <li>The OLS model is specified by minimizing the sum of squared residuals: <span class="math display">\[
-argmin\sum_i^n \epsilon_i^2 = argmin\sum_i^n (y_i - \hat{y}_i)^2
+\operatorname*{argmin}_{\hat{y_i}}\sum_i^n \epsilon_i^2 = \operatorname*{argmin}_{\hat{y_i}}\sum_i^n (y_i - \hat{y}_i)^2=\beta_0 +\beta_1X...\beta_bX_n
 \]</span></li>
-<li>The sum of squared residuals are theoretically minimized by the conditional mean of of <span class="math inline">\(y\)</span> given the predictors <span class="math inline">\(X\)</span></li>
+<li>The sum of squared residuals is minimized by the mean of of <span class="math inline">\(\hat{Y}\)</span> given the predictors <span class="math inline">\(X\)</span></li>
 </ul>
 </section>
 <section id="median-regression" class="slide level2 smaller">
@@ -427,11 +437,12 @@ F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarro
 <section id="example-visualizations" class="title-slide slide level1 center">
 <h1>Example Visualizations</h1>
 
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch quarto-figure-center"><p><span class="math inline">\(\tiny\ell(y, \hat{y})= \begin{cases}\theta \cdot(y-\hat{y}) &amp; , \hat{y} \leq y \\ (1-\theta) \cdot(\hat{y}-y) &amp; , \hat{y}&gt;y\end{cases}\)</span> <span class="math inline">\(\tiny\text{Suppose we have two estimates, -1 and 1, the actual value is 0, and we are using 10th quantile.}\)</span> <span class="math inline">\(\tiny\text{-1 is an underestimation so 0.1|(0 - (-1))|=0.1. 1 is an overestimation so 0.9|0 - 1|=0.9}\)</span></p>
 </section>
 <section id="th-conditional-quantile" class="slide level2">
 <h2>50th Conditional Quantile</h2>
 
-<img data-src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><table>
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><table>
 <thead>
 <tr class="header">
 <th>Negative Residual</th>
@@ -451,7 +462,7 @@ F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarro
 <section id="th-quantile" class="slide level2">
 <h2>10th Quantile</h2>
 
-<img data-src="presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"><table>
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"><table>
 <thead>
 <tr class="header">
 <th>Negative Residual</th>
@@ -471,7 +482,7 @@ F(c)-\theta F(c)-\theta+\theta F(c)=0 \Longrightarrow F(c)=\theta \Longrightarro
 <section id="th-quantile-1" class="slide level2">
 <h2>90th Quantile</h2>
 
-<img data-src="presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"><table>
+<img data-src="presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><table>
 <thead>
 <tr class="header">
 <th>Negative Residual</th>
