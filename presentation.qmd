@@ -13,7 +13,7 @@ format:
 
 -   Quantile regression (QR) loss function as compared to ordinary least squares
 -   How quantile regression relates to the median
--   Generalization of how quantile regression can be generalized to 
+-   How quantile regression can be generalized to any quantile
 -   Illustration of QR behavior for different parameters
 
 ## Real-World Benefits
@@ -29,10 +29,13 @@ format:
 
 # Methods
 
+## History
+- Published by Roger Koenker & Gilbert Basset, Jr. in 1978.
+
 ## Nomenclature
 - In most literature, the words quantile and percentile are used interchangeable
 - Technically quantiles refer to the number of equal partitions of the distribution
-- Quantile $\neq$ Quartile
+- Quantile $\neq$ Quartile. First quartile refers to 25th, second refers to 50th/Median
 ```{r}
 q = round(qnorm(c(.25, .5, .75), 0, 1),3);
  curve(dnorm(x, 0, 1), -3, 3, col="blue", lwd=2, ylab="PDF",

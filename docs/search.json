@@ -4,7 +4,7 @@
     "href": "presentation.html#mathematical-properties",
     "title": "Quantile regression",
     "section": "Mathematical Properties",
-    "text": "Mathematical Properties\n\nQuantile regression (QR) loss function as compared to ordinary least squares\nHow quantile regression relates to the median\nGeneralization of how quantile regression can be generalized to\nIllustration of QR behavior for different parameters"
+    "text": "Mathematical Properties\n\nQuantile regression (QR) loss function as compared to ordinary least squares\nHow quantile regression relates to the median\nHow quantile regression can be generalized to any quantile\nIllustration of QR behavior for different parameters"
   },
   {
     "objectID": "presentation.html#real-world-benefits",
@@ -130,7 +130,7 @@
     "href": "presentation.html#nomenclature",
     "title": "Quantile regression",
     "section": "Nomenclature",
-    "text": "Nomenclature\n\nIn most literature, the words quantile and percentile are used interchangeable\nTechnically quantiles refer to the number of equal partitions of the distribution\nQuantile \\(\\neq\\) Quartile"
+    "text": "Nomenclature\n\nIn most literature, the words quantile and percentile are used interchangeable\nTechnically quantiles refer to the number of equal partitions of the distribution\nQuantile \\(\\neq\\) Quartile. First quartile refers to 25th, second refers to 50th/Median"
   },
   {
     "objectID": "presentation.html#formal-definition",
@@ -138,5 +138,12 @@
     "title": "Quantile regression",
     "section": "Formal Definition",
     "text": "Formal Definition\nA quantile is defined as the follow:\n\\(Q(p)=F^{-1}(p)=\\inf \\{x: F(x) \\geq p\\}, \\quad 0&lt;p&lt;1\\),"
+  },
+  {
+    "objectID": "presentation.html#history",
+    "href": "presentation.html#history",
+    "title": "Quantile regression",
+    "section": "History",
+    "text": "History\n\nPublished by Roger Koenker & Gilbert Basset, Jr. in 1978."
   }
 ]
