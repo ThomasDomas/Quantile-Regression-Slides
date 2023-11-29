@@ -5,6 +5,8 @@ format:
   revealjs:
     theme: dark
     footer: "Quantile Regression - Advanced Statistical Modeling Fall"
+    slide-number: true
+    show-slide-number: print
 ---
 
 # Introduction
