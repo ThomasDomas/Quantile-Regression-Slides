@@ -145,5 +145,12 @@
     "title": "Quantile regression",
     "section": "History",
     "text": "History\n\nPublished by Roger Koenker & Gilbert Basset, Jr. in 1978."
+  },
+  {
+    "objectID": "presentation.html#introduction",
+    "href": "presentation.html#introduction",
+    "title": "Quantile regression",
+    "section": "Introduction",
+    "text": "Introduction\nMathematical Properties\n\nQuantile regression (QR) loss function as compared to ordinary least squares\nHow quantile regression relates to the median\nHow quantile regression can be generalized to any quantile\nIllustration of QR behavior for different parameters\n\nReal-World Benefits\n\nTesting OLS and QR model assumptions on data\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data"
   }
 ]
