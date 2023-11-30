@@ -400,7 +400,7 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <li>The OLS model is specified by minimizing the sum of squared residuals: <span class="math display">\[
 \operatorname*{argmin}_{\hat{y_i}}\sum_i^n \epsilon_i^2 = \operatorname*{argmin}_{\hat{y_i}}\sum_i^n (y_i - \hat{y}_i)^2=\beta_0 +\beta_1X...\beta_bX_n
 \]</span></li>
-<li>The sum of squared residuals is minimized by the mean of of <span class="math inline">\(\hat{Y}\)</span> given the predictors <span class="math inline">\(X\)</span></li>
+<li>The sum of squared residuals is minimized by the mean of <span class="math inline">\(\hat{Y}\)</span> given the predictors <span class="math inline">\(X\)</span></li>
 </ul>
 </section>
 <section id="median-regression" class="slide level2 smaller">
@@ -409,7 +409,7 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 <div class="column" style="width:60%;">
 <ul>
 <li><p>Median regression minimizes the sum of <strong>absolute</strong> residuals:</p>
-<p><span class="math display">\[argmin \space E(|y-\hat{y}|)\]</span></p></li>
+<p><span class="math display">\[\operatorname*{argmin}_{c} \space E(|y-\hat{y}|)\]</span></p></li>
 <li><p>The expected value of the absolute sum of deviations from a given center c can be split into the following two terms [2]:</p>
 <p><span class="math display">\[E|Y - c| = \int_{y\in R}|y-c|f(y)dy \\
 =\int_{y &lt; c} |y-c|f(y)dy + \int_{y&gt;c}|y-c|f(y)dy  \\
@@ -427,6 +427,15 @@ Jorge Galdos, Noureldin Kamel, and Thomas Domas
 </ul>
 </div>
 </div>
+</section>
+<section id="median-regression-continued" class="slide level2">
+<h2>Median Regression Continued</h2>
+<p>Integrating by parts <span class="math inline">\(\begin{aligned} &amp; \left\{\left.(c-y) f(y)\right|_{-\infty} ^c+\int_{y&lt;c} \frac{\partial}{\partial c}(c-y) f(y) d y\right\}+ \\ &amp; \left\{\left.(y-c) f(y)\right|_c ^{+\infty}+\int_{y&gt;c} \frac{\partial}{\partial c}(y-c) f(y) d y\right\}=0\end{aligned}\)</span></p>
+<ul>
+<li>Note first parts of each term are 0 when y=c.</li>
+<li>Note F(c) - [1-F(c)]=0</li>
+<li>Adding the two equations together: <span class="math inline">\(2 F(c)-1=0 \Longrightarrow F(c)=\frac{1}{2} \Rightarrow c=M e\)</span></li>
+</ul>
 </section>
 <section id="generalization-to-quantile-regression" class="slide level2 smaller">
 <h2>Generalization to Quantile Regression</h2>

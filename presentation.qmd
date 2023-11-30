@@ -53,7 +53,7 @@ $Q(p)=F^{-1}(p)=\inf \{x: F(x) \geq p\}, \quad 0<p<1$,
 -   The OLS model is specified by minimizing the sum of squared residuals: $$
     \operatorname*{argmin}_{\hat{y_i}}\sum_i^n \epsilon_i^2 = \operatorname*{argmin}_{\hat{y_i}}\sum_i^n (y_i - \hat{y}_i)^2=\beta_0 +\beta_1X...\beta_bX_n
     $$
--   The sum of squared residuals is minimized by the mean of of $\hat{Y}$ given the predictors $X$
+-   The sum of squared residuals is minimized by the mean of $\hat{Y}$ given the predictors $X$
 
 ## Median Regression {.smaller}
 
@@ -61,7 +61,7 @@ $Q(p)=F^{-1}(p)=\inf \{x: F(x) \geq p\}, \quad 0<p<1$,
 ::: {.column width="60%"}
 -   Median regression minimizes the sum of **absolute** residuals:
 
-    $$argmin \space E(|y-\hat{y}|)$$
+    $$\operatorname*{argmin}_{c} \space E(|y-\hat{y}|)$$
 
 -   The expected value of the absolute sum of deviations from a given center c can be split into the following two terms \[2\]:
 
@@ -80,6 +80,16 @@ $$
 -   After differentiating the integrals on the left we will arrive at the conclusion that $c$ is the **median**.
 :::
 :::
+
+## Median Regression Continued
+
+Integrating by parts
+$\begin{aligned} & \left\{\left.(c-y) f(y)\right|_{-\infty} ^c+\int_{y<c} \frac{\partial}{\partial c}(c-y) f(y) d y\right\}+ \\ & \left\{\left.(y-c) f(y)\right|_c ^{+\infty}+\int_{y>c} \frac{\partial}{\partial c}(y-c) f(y) d y\right\}=0\end{aligned}$
+
+- Note first parts of each term are 0 when y=c.
+- Note F(c) - [1-F(c)]=0
+- Adding the two equations together: 
+$2 F(c)-1=0 \Longrightarrow F(c)=\frac{1}{2} \Rightarrow c=M e$
 
 ## Generalization to Quantile Regression {.smaller}
 

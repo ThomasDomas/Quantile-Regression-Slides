@@ -25,14 +25,14 @@
     "href": "presentation.html#ordinary-least-squares-specification",
     "title": "Quantile regression",
     "section": "Ordinary Least Squares Specification",
-    "text": "Ordinary Least Squares Specification\n\nThe OLS model is specified by minimizing the sum of squared residuals: \\[\n\\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n \\epsilon_i^2 = \\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n (y_i - \\hat{y}_i)^2=\\beta_0 +\\beta_1X...\\beta_bX_n\n\\]\nThe sum of squared residuals is minimized by the mean of of \\(\\hat{Y}\\) given the predictors \\(X\\)"
+    "text": "Ordinary Least Squares Specification\n\nThe OLS model is specified by minimizing the sum of squared residuals: \\[\n\\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n \\epsilon_i^2 = \\operatorname*{argmin}_{\\hat{y_i}}\\sum_i^n (y_i - \\hat{y}_i)^2=\\beta_0 +\\beta_1X...\\beta_bX_n\n\\]\nThe sum of squared residuals is minimized by the mean of \\(\\hat{Y}\\) given the predictors \\(X\\)"
   },
   {
     "objectID": "presentation.html#median-regression",
     "href": "presentation.html#median-regression",
     "title": "Quantile regression",
     "section": "Median Regression",
-    "text": "Median Regression\n\n\n\nMedian regression minimizes the sum of absolute residuals:\n\\[argmin \\space E(|y-\\hat{y}|)\\]\nThe expected value of the absolute sum of deviations from a given center c can be split into the following two terms [2]:\n\\[E|Y - c| = \\int_{y\\in R}|y-c|f(y)dy \\\\\n=\\int_{y &lt; c} |y-c|f(y)dy + \\int_{y&gt;c}|y-c|f(y)dy  \\\\\n=\\int_{y&lt;c}(c-y)f(y)dy + \\int_{y&gt;c}(y-c)f(y)dy \\\\\\]\n\n\n\nDifferentiating \\(E|y-c|\\) with respect to \\(c\\) leads to the solution of the minimum:\n\n\\[\n\\frac{\\partial}{\\partial c}E|y-c|=0\n\\]\n\nAfter differentiating the integrals on the left we will arrive at the conclusion that \\(c\\) is the median."
+    "text": "Median Regression\n\n\n\nMedian regression minimizes the sum of absolute residuals:\n\\[\\operatorname*{argmin}_{c} \\space E(|y-\\hat{y}|)\\]\nThe expected value of the absolute sum of deviations from a given center c can be split into the following two terms [2]:\n\\[E|Y - c| = \\int_{y\\in R}|y-c|f(y)dy \\\\\n=\\int_{y &lt; c} |y-c|f(y)dy + \\int_{y&gt;c}|y-c|f(y)dy  \\\\\n=\\int_{y&lt;c}(c-y)f(y)dy + \\int_{y&gt;c}(y-c)f(y)dy \\\\\\]\n\n\n\nDifferentiating \\(E|y-c|\\) with respect to \\(c\\) leads to the solution of the minimum:\n\n\\[\n\\frac{\\partial}{\\partial c}E|y-c|=0\n\\]\n\nAfter differentiating the integrals on the left we will arrive at the conclusion that \\(c\\) is the median."
   },
   {
     "objectID": "presentation.html#generalization-to-quantile-regression",
@@ -152,5 +152,12 @@
     "title": "Quantile regression",
     "section": "Introduction",
     "text": "Introduction\nMathematical Properties\n\nQuantile regression (QR) loss function as compared to ordinary least squares\nHow quantile regression relates to the median\nHow quantile regression can be generalized to any quantile\nIllustration of QR behavior for different parameters\n\nReal-World Benefits\n\nTesting OLS and QR model assumptions on data\nComparison of QR to OLS performance using home price data\nMeasuring performance in extreme subsets of the data"
+  },
+  {
+    "objectID": "presentation.html#median-regression-continued",
+    "href": "presentation.html#median-regression-continued",
+    "title": "Quantile regression",
+    "section": "Median Regression Continued",
+    "text": "Median Regression Continued\nIntegrating by parts \\(\\begin{aligned} & \\left\\{\\left.(c-y) f(y)\\right|_{-\\infty} ^c+\\int_{y&lt;c} \\frac{\\partial}{\\partial c}(c-y) f(y) d y\\right\\}+ \\\\ & \\left\\{\\left.(y-c) f(y)\\right|_c ^{+\\infty}+\\int_{y&gt;c} \\frac{\\partial}{\\partial c}(y-c) f(y) d y\\right\\}=0\\end{aligned}\\)\n\nNote first parts of each term are 0 when y=c.\nNote F(c) - [1-F(c)]=0\nAdding the two equations together: \\(2 F(c)-1=0 \\Longrightarrow F(c)=\\frac{1}{2} \\Rightarrow c=M e\\)"
   }
 ]
